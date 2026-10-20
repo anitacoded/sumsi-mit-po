@@ -810,3 +810,51 @@ body:has(.is-running) .app-footer {
     display: none;
   }
 }
+
+
+/* SUMSI design system — dashboard / header visual refresh only.
+   Keep exercise views, route hashes and JavaScript hooks unchanged. */
+.app-header { padding-block: 20px; border-bottom: 2px solid var(--espresso); }
+.brand { gap: 12px; font-family: "DM Sans", Arial, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.065em; line-height: .94; }
+.brand img { width: 64px; height: 64px; object-fit: contain; border-radius: 14px; }
+.brand > span { color: var(--espresso); }
+.app-header > p { font-weight: 500; color: var(--espresso); }
+.dashboard-heading { padding-block: 26px 22px; }
+.dashboard-heading .eyebrow { color: var(--plum); text-transform: none; letter-spacing: 0; font-size: 13px; font-weight: 600; }
+.dashboard-heading h1 { font-weight: 700; font-size: clamp(29px, 4.5vw, 44px); line-height: 1.12; letter-spacing: -0.02em; }
+.dashboard-heading > p:last-child { font-size: 16px; }
+.dashboard-grid { gap: 16px; }
+.tile { border: 2px solid var(--espresso); border-radius: 18px; min-height: 214px; padding: 18px; box-shadow: 4px 4px 0 var(--espresso); color: var(--espresso); transition: transform .16s ease, box-shadow .16s ease; }
+.tile:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--espresso); }
+.tile:active { transform: translate(3px,3px); box-shadow: 1px 1px 0 var(--espresso); }
+.tile-hummel, .tile-box, .tile-oma, .tile-lang { border-radius: 18px; color: var(--espresso); }
+.tile-hummel { background: var(--lilac); }
+.tile-oma { background: var(--mauve); }
+.tile-box { background: var(--lavender); }
+.tile-lang { background: var(--cream); }
+.tile-number { border: 1.5px solid var(--espresso); background: var(--cream); padding: 5px 9px; border-radius: 999px; font-size: 12px; }
+.tile-art { top: 47px; right: 19px; z-index: 0; opacity: .82; }
+.tile .illustration { stroke-width: 3; }
+.tile-hummel .tile-art, .tile-box .tile-art, .tile-oma .tile-art, .tile-lang .tile-art { color: var(--espresso); }
+.tile-copy { position: relative; z-index: 1; max-width: 72%; }
+.tile h2 { font-size: 25px; font-weight: 700; letter-spacing: -0.02em; }
+.tile p { font-size: 14px; }
+.dashboard-footnote { color: var(--plum); font-size: 13px; }
+@media (max-width: 600px) {
+  .app-header { padding-block: 13px 14px; }
+  .brand { font-size: 19px; gap: 9px; }
+  .brand img { width: 54px; height: 54px; }
+  .dashboard-heading { padding-block: 25px 20px; }
+  .dashboard-heading .eyebrow { font-size: 12px; letter-spacing: 0; }
+  .dashboard-heading h1 { font-size: 28px; letter-spacing: -0.02em; }
+  .dashboard-heading > p:last-child { font-size: 14px; }
+  .dashboard-grid { gap: 12px; }
+  .tile { min-height: 190px; padding: 13px; }
+  .tile-copy { max-width: 100%; }
+  .tile h2 { font-size: clamp(17px, 4.8vw, 23px); }
+  .tile p { font-size: 12px; }
+  .tile-art { position: relative; inset: auto; opacity: .8; }
+  .tile .illustration { width: 70px; height: 70px; }
+  .tile-number { font-size: 12px; padding: 4px 7px; }
+}
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
