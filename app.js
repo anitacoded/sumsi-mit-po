@@ -50,11 +50,9 @@ for (const form of document.querySelectorAll(".link-settings form")) {
   const storageKey = `sumsi-link-${key}`;
   const input = form.elements.url;
   const link = document.querySelector(
-    service === "spotify"
-      ? `.${mode === "oma" ? "oma" : "hummel"}-spotify-link` || ""
-      : mode === "hummel"
-        ? ".hummel-youtube-link"
-        : '.music-link[data-mode="oma"]',
+    mode === "hummel"
+      ? (service === "spotify" ? '.music-link[data-mode="hummel"]' : ".hummel-youtube-link")
+      : (service === "spotify" ? ".oma-spotify-link" : '.music-link[data-mode="oma"]'),
   );
   // Preserve existing saved values for the original customizable buttons.
   const legacyKey = (mode === "hummel" && service === "spotify") ||
