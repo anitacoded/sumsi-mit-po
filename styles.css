@@ -922,3 +922,8 @@ body:has(.is-running) .app-footer {
   .view-hummel .hummel-bee { width:100px; height:100px; }
   .view-hummel .audio-hum { font-size:30px; }
 }
+
+/* Hummelmodus: bee alongside the short message */
+.view-hummel .hummel-audio-art { flex-direction:row; gap:22px; }
+.view-hummel .audio-hum { font-size:clamp(23px,4vw,32px); line-height:1.1; }
+@media(max-width:600px) { .view-hummel .hummel-audio-art { flex-direction:row; gap:12px; } .view-hummel .hummel-bee { width:92px; height:92px; flex-shrink:0; } .view-hummel .audio-hum { font-size:clamp(20px,5.3vw,27px); } }
