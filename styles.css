@@ -936,3 +936,7 @@ body:has(.is-running) .app-footer {
 @media(max-width:600px) { .view-oma .oma-chair { width:105px; height:105px; } }
 
 .view-hummel .hummel-youtube-link { display:flex; justify-content:space-between; width:100%; margin-top:12px; }
+
+/* Brief guidance under the Boxatmung timer */
+.view-box .exercise-tip { font-size:14px; line-height:1.55; text-align:center; margin:0 0 16px; color:var(--espresso); }
+@media(max-width:600px) { .view-box .exercise-tip { font-size:13px; } }
