@@ -943,9 +943,9 @@ body:has(.is-running) .app-footer {
 
 /* SUMSI bee replaces the animated dot on the Boxatmung track */
 .view-box .box-dot {
-  width: 28px;
-  height: 28px;
-  background: url("./assets/sumsi-biene-icon.png") center / contain no-repeat;
+  width: 40px;
+  height: 40px;
+  background: url("./assets/sumsi-biene-transparent.png") center / contain no-repeat;
   border: 0;
   border-radius: 0;
   box-shadow: none;
