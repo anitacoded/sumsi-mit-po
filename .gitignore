@@ -1,0 +1,4 @@
+
+# Generated Pages output and Python bytecode
+/_site/
+__pycache__/
