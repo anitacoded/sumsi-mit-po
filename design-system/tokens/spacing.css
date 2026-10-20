@@ -1,0 +1,18 @@
+:root{
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;
+--page-gutter:20px;--content-max:560px;--tile-gap:12px;
+--touch-min:48px;
+
+/* Radii – angemessen, nicht überall Pillen */
+--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:24px;--radius-round:999px;
+
+/* Lines – konsistente Strichstärken */
+--stroke-thin:1.5px;--stroke:2px;--stroke-bold:3px;
+
+/* Shadows – harte, versetzte Retro-Schatten in Espresso; sparsam */
+--shadow-none:none;
+--shadow-offset-sm:2px 2px 0 var(--espresso);
+--shadow-offset:4px 4px 0 var(--espresso);
+--shadow-panel:0 -2px 0 var(--espresso);
+--focus-outline:3px solid var(--focus-ring);--focus-offset:3px;
+}

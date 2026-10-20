@@ -1,0 +1,30 @@
+:root{
+--font-display:"Space Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+--font-body:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+
+/* Mobile-first scale; headlines bleiben auf kleinen Geräten moderat */
+--size-xs:12px;   /* absolutes Minimum */
+--size-sm:14px;
+--size-md:16px;   /* Fließtext */
+--size-lg:18px;
+--size-xl:22px;
+--size-2xl:28px;
+--size-3xl:36px;
+--size-4xl:48px;
+--size-timer:64px;
+
+--leading-tight:1.1;--leading-snug:1.25;--leading-body:1.5;
+--tracking-display:-0.02em;--tracking-label:0.01em;
+
+/* Roles */
+--type-display:var(--weight-bold) var(--size-3xl)/var(--leading-tight) var(--font-display);
+--type-h1:var(--weight-bold) var(--size-2xl)/var(--leading-tight) var(--font-display);
+--type-h2:var(--weight-semibold) var(--size-xl)/var(--leading-snug) var(--font-display);
+--type-h3:var(--weight-semibold) var(--size-lg)/var(--leading-snug) var(--font-display);
+--type-body:var(--weight-regular) var(--size-md)/var(--leading-body) var(--font-body);
+--type-body-sm:var(--weight-regular) var(--size-sm)/var(--leading-body) var(--font-body);
+--type-label:var(--weight-medium) var(--size-sm)/1.2 var(--font-body);
+--type-button:var(--weight-semibold) var(--size-md)/1 var(--font-display);
+--type-timer:var(--weight-bold) var(--size-timer)/1 var(--font-display);
+}

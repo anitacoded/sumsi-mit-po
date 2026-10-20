@@ -1,0 +1,43 @@
+/* Verbindliche Palette – exakt diese sieben HEX-Werte. Keine weiteren Markenfarben. */
+:root{
+--espresso:#4B342F;
+--deep-plum:#5F3D87;
+--purple:#9570D3;
+--lilac:#C8B5E6;
+--light-lavender:#EEE8F7;
+--cream:#FAF7F2;
+--mauve:#D6A7B8;
+
+/* Semantic – text */
+--text-strong:var(--espresso);
+--text-body:var(--espresso);
+--text-muted:rgba(75,52,47,.78);
+--text-accent:var(--deep-plum);
+--text-on-dark:var(--cream);
+--text-link:var(--deep-plum);
+--text-link-hover:var(--espresso);
+
+/* Semantic – surfaces */
+--surface-page:var(--cream);
+--surface-calm:var(--light-lavender);
+--surface-card:var(--cream);
+--surface-tile-1:var(--lilac);
+--surface-tile-2:var(--light-lavender);
+--surface-tile-3:var(--mauve);
+--surface-tile-4:var(--cream);
+--surface-dark:var(--espresso);
+--surface-accent:var(--purple);
+--surface-overlay:rgba(75,52,47,.45);
+
+/* Semantic – lines & states */
+--border-strong:var(--espresso);
+--border-soft:rgba(75,52,47,.22);
+--action-primary:var(--deep-plum);
+--action-primary-hover:var(--espresso);
+--action-secondary:var(--cream);
+--action-secondary-hover:var(--light-lavender);
+--focus-ring:var(--deep-plum);
+--state-active:var(--deep-plum);
+--state-progress:var(--purple);
+--state-track:var(--lilac);
+}
