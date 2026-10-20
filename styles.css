@@ -1002,3 +1002,10 @@ body:has(.is-running) .app-footer {
 .dashboard-fun-fact strong { display:block; font-size:12px; letter-spacing:.08em; margin-bottom:5px; }
 .dashboard-fun-fact p span { display:block; }
 @media(max-width:600px) { .dashboard-fun-fact { margin-top:20px; padding:15px; gap:10px; } .dashboard-fun-fact p { font-size:13px; } }
+
+/* Make the 'Schon gewusst?' lead-in readable as its own heading */
+.dashboard-fun-fact .fun-fact-copy { min-width:0; flex:1; }
+.dashboard-fun-fact .fun-fact-copy strong { display:block; font-size:12px; letter-spacing:.08em; margin-bottom:5px; }
+.dashboard-fun-fact .fun-fact-copy h2 { font-size:clamp(19px, 4vw, 23px); line-height:1.2; margin:0 0 8px; color:var(--espresso); }
+.dashboard-fun-fact .fun-fact-copy p { margin:0; line-height:1.5; font-size:15px; }
+@media(max-width:600px) { .dashboard-fun-fact .fun-fact-copy p { font-size:13px; } }
