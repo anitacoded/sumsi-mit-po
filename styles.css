@@ -957,3 +957,6 @@ body:has(.is-running) .app-footer {
 
 /* Keep the accessibility preference visible only on animated exercises. */
 .motion-setting[hidden] { display: none; }
+
+/* Separate platform-specific link settings */
+.link-settings form + form { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(75,52,47,.16); }
