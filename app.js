@@ -2,7 +2,7 @@
 
 const defaults = {
   hummel: "https://www.youtube.com/results?search_query=lofi+chill+music",
-  oma: "https://www.youtube.com/results?search_query=cozy+jazz+relaxing",
+  oma: "https://www.youtube.com/results?search_query=imaginations%C3%BCbung+sicherer+ort+anleitung",
 };
 const allowedHosts = new Set([
   "youtube.com",
