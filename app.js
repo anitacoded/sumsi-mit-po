@@ -1,8 +1,10 @@
 "use strict";
 
 const defaults = {
-  hummel: "https://open.spotify.com/track/3cXuhDMnE9ApbOWVmWzdEM?si=nsYneCRdQkO9WWvL_TGzdQ",
-  oma: "https://www.youtube.com/watch?v=4stJ7TCcHMM",
+  "hummel-spotify": "https://open.spotify.com/track/3cXuhDMnE9ApbOWVmWzdEM?si=nsYneCRdQkO9WWvL_TGzdQ",
+  "hummel-youtube": "https://www.youtube.com/watch?v=216CtTngm4c",
+  "oma-youtube": "https://www.youtube.com/watch?v=4stJ7TCcHMM",
+  "oma-spotify": "https://open.spotify.com/episode/61ZUnlRbN8moZFpE62TbJn?si=NHF8hBUqTt2ikhfZF-ovcA",
 };
 const allowedHosts = new Set([
   "youtube.com",
@@ -43,37 +45,60 @@ function saveValue(key, value) {
 }
 for (const form of document.querySelectorAll(".link-settings form")) {
   const mode = form.dataset.mode;
+  const service = form.dataset.service;
+  const key = `${mode}-${service}`;
+  const storageKey = `sumsi-link-${key}`;
   const input = form.elements.url;
-  const link = document.querySelector(`.music-link[data-mode="${mode}"]`);
+  const link = document.querySelector(
+    service === "spotify"
+      ? `.${mode === "oma" ? "oma" : "hummel"}-spotify-link` || ""
+      : mode === "hummel"
+        ? ".hummel-youtube-link"
+        : '.music-link[data-mode="oma"]',
+  );
+  // Preserve existing saved values for the original customizable buttons.
+  const legacyKey = (mode === "hummel" && service === "spotify") ||
+    (mode === "oma" && service === "youtube")
+    ? `sumsi-link-${mode}`
+    : null;
   const status = form.querySelector('[role="status"]');
   const apply = (value) => {
     input.value = value;
     link.href = value;
   };
-  apply(validMusicUrl(readSaved(`sumsi-link-${mode}`)) || defaults[mode]);
+  const hostMatches = (url) => {
+    try {
+      const hostname = new URL(url).hostname;
+      return service === "spotify"
+        ? hostname === "open.spotify.com"
+        : ["youtube.com", "www.youtube.com", "m.youtube.com",
+           "music.youtube.com", "youtu.be"].includes(hostname);
+    } catch { return false; }
+  };
+  const stored = validMusicUrl(readSaved(storageKey)) ||
+    (legacyKey && validMusicUrl(readSaved(legacyKey)));
+  apply(stored && hostMatches(stored) ? stored : defaults[key]);
   input.addEventListener("input", () => input.setCustomValidity(""));
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const url = validMusicUrl(input.value.trim());
-    if (!url) {
-      input.setCustomValidity(
-        "Bitte verwende einen HTTPS-Link von YouTube oder open.spotify.com.",
-      );
-      status.textContent =
-        "Bitte verwende einen gültigen YouTube- oder Spotify-Link mit https://.";
+    if (!url || !hostMatches(url)) {
+      input.setCustomValidity(`Bitte verwende einen gültigen HTTPS-Link von ${service === "spotify" ? "Spotify" : "YouTube"}.`);
+      status.textContent = `Bitte füge einen gültigen ${service === "spotify" ? "Spotify" : "YouTube"}-Link ein.`;
       input.reportValidity();
       return;
     }
     apply(url);
-    status.textContent = saveValue(`sumsi-link-${mode}`, url)
+    if (legacyKey) saveValue(legacyKey, url);
+    status.textContent = saveValue(storageKey, url)
       ? "Gespeichert. Dein Link bleibt in diesem Browser."
       : "Link übernommen. Dauerhaftes Speichern ist in diesem Browser nicht verfügbar.";
   });
   form.querySelector("[data-reset]").addEventListener("click", () => {
-    apply(defaults[mode]);
+    apply(defaults[key]);
     input.setCustomValidity("");
-    const saved = saveValue(`sumsi-link-${mode}`, defaults[mode]);
-    status.textContent = saved
+    if (legacyKey) saveValue(legacyKey, defaults[key]);
+    status.textContent = saveValue(storageKey, defaults[key])
       ? "Standardlink wiederhergestellt."
       : "Standardlink für diese Sitzung wiederhergestellt.";
   });
