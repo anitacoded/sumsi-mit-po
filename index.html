@@ -166,23 +166,21 @@
               <circle cx="12" cy="12" r="3" /></svg
             ><span>Link anpassen</span>
           </summary>
-          <form data-mode="hummel">
-            <label for="hummel-url">YouTube- oder Spotify-Link</label>
+          <form data-mode="hummel" data-service="spotify">
+            <label for="hummel-spotify-url">Spotify-Link</label>
             <div class="input-row">
-              <input
-                id="hummel-url"
-                name="url"
-                type="url"
-                inputmode="url"
-                required
-                placeholder="https://open.spotify.com/…"
-                aria-describedby="hummel-status"
-              /><button type="submit">Speichern</button>
+              <input id="hummel-spotify-url" name="url" type="url" inputmode="url" required placeholder="https://open.spotify.com/…" aria-describedby="hummel-spotify-status" /><button type="submit">Speichern</button>
             </div>
-            <button class="reset-link" type="button" data-reset="hummel">
-              Standard wiederherstellen
-            </button>
-            <p class="form-status" id="hummel-status" role="status"></p>
+            <button class="reset-link" type="button" data-reset="spotify">Standard wiederherstellen</button>
+            <p class="form-status" id="hummel-spotify-status" role="status"></p>
+          </form>
+          <form data-mode="hummel" data-service="youtube">
+            <label for="hummel-youtube-url">YouTube-Link</label>
+            <div class="input-row">
+              <input id="hummel-youtube-url" name="url" type="url" inputmode="url" required placeholder="https://www.youtube.com/…" aria-describedby="hummel-youtube-status" /><button type="submit">Speichern</button>
+            </div>
+            <button class="reset-link" type="button" data-reset="youtube">Standard wiederherstellen</button>
+            <p class="form-status" id="hummel-youtube-status" role="status"></p>
           </form>
         </details>
       </section>
@@ -247,23 +245,21 @@
               <circle cx="12" cy="12" r="3" /></svg
             ><span>Link anpassen</span>
           </summary>
-          <form data-mode="oma">
-            <label for="oma-url">YouTube- oder Spotify-Link</label>
+          <form data-mode="oma" data-service="youtube">
+            <label for="oma-youtube-url">YouTube-Link</label>
             <div class="input-row">
-              <input
-                id="oma-url"
-                name="url"
-                type="url"
-                inputmode="url"
-                required
-                placeholder="https://www.youtube.com/…"
-                aria-describedby="oma-status"
-              /><button type="submit">Speichern</button>
+              <input id="oma-youtube-url" name="url" type="url" inputmode="url" required placeholder="https://www.youtube.com/…" aria-describedby="oma-youtube-status" /><button type="submit">Speichern</button>
             </div>
-            <button class="reset-link" type="button" data-reset="oma">
-              Standard wiederherstellen
-            </button>
-            <p class="form-status" id="oma-status" role="status"></p>
+            <button class="reset-link" type="button" data-reset="youtube">Standard wiederherstellen</button>
+            <p class="form-status" id="oma-youtube-status" role="status"></p>
+          </form>
+          <form data-mode="oma" data-service="spotify">
+            <label for="oma-spotify-url">Spotify-Link</label>
+            <div class="input-row">
+              <input id="oma-spotify-url" name="url" type="url" inputmode="url" required placeholder="https://open.spotify.com/…" aria-describedby="oma-spotify-status" /><button type="submit">Speichern</button>
+            </div>
+            <button class="reset-link" type="button" data-reset="spotify">Standard wiederherstellen</button>
+            <p class="form-status" id="oma-spotify-status" role="status"></p>
           </form>
         </details>
       </section>
