@@ -930,3 +930,7 @@ body:has(.is-running) .app-footer {
 
 /* Second audio resource on the Inner Oma page */
 .view-oma .oma-spotify-link { display:flex; justify-content:space-between; width:100%; margin-top:12px; }
+
+/* Innere Oma – armchair from the dashboard motif set */
+.view-oma .oma-chair { display:block; width:130px; height:130px; object-fit:contain; flex-shrink:0; }
+@media(max-width:600px) { .view-oma .oma-chair { width:105px; height:105px; } }
