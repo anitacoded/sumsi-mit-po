@@ -950,3 +950,7 @@ body:has(.is-running) .app-footer {
   border-radius: 0;
   box-shadow: none;
 }
+
+/* Guidance for the 4/8 breathing exercise */
+.view-lang .exercise-tip { font-size:14px; line-height:1.55; text-align:center; margin:0 0 16px; color:var(--espresso); }
+@media(max-width:600px) { .view-lang .exercise-tip { font-size:13px; } }
