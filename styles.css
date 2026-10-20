@@ -810,3 +810,187 @@ body:has(.is-running) .app-footer {
     display: none;
   }
 }
+
+
+/* SUMSI design system — dashboard / header visual refresh only.
+   Keep exercise views, route hashes and JavaScript hooks unchanged. */
+.app-header { padding-block: 20px; border-bottom: 2px solid var(--espresso); }
+.brand { gap: 12px; font-family: "DM Sans", Arial, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.065em; line-height: .94; }
+.brand img { width: 64px; height: 64px; object-fit: contain; border-radius: 14px; }
+.brand > span { color: var(--espresso); }
+.app-header > p { font-weight: 500; color: var(--espresso); }
+.dashboard-heading { padding-block: 26px 22px; }
+.dashboard-heading .eyebrow { color: var(--plum); text-transform: none; letter-spacing: 0; font-size: 13px; font-weight: 600; }
+.dashboard-heading h1 { font-weight: 700; font-size: clamp(29px, 4.5vw, 44px); line-height: 1.12; letter-spacing: -0.02em; }
+.dashboard-heading > p:last-child { font-size: 16px; }
+.dashboard-grid { gap: 16px; }
+.tile { border: 2px solid var(--espresso); border-radius: 18px; min-height: 214px; padding: 18px; box-shadow: 4px 4px 0 var(--espresso); color: var(--espresso); transition: transform .16s ease, box-shadow .16s ease; }
+.tile:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--espresso); }
+.tile:active { transform: translate(3px,3px); box-shadow: 1px 1px 0 var(--espresso); }
+.tile-hummel, .tile-box, .tile-oma, .tile-lang { border-radius: 18px; color: var(--espresso); }
+.tile-hummel { background: var(--lilac); }
+.tile-oma { background: var(--mauve); }
+.tile-box { background: var(--lavender); }
+.tile-lang { background: var(--cream); }
+.tile-number { border: 1.5px solid var(--espresso); background: var(--cream); padding: 5px 9px; border-radius: 999px; font-size: 12px; }
+.tile-art { top: 47px; right: 19px; z-index: 0; opacity: .82; }
+.tile .illustration { stroke-width: 3; }
+.tile-hummel .tile-art, .tile-box .tile-art, .tile-oma .tile-art, .tile-lang .tile-art { color: var(--espresso); }
+.tile-copy { position: relative; z-index: 1; max-width: 72%; }
+.tile h2 { font-size: 25px; font-weight: 700; letter-spacing: -0.02em; }
+.tile p { font-size: 14px; }
+.dashboard-footnote { color: var(--plum); font-size: 13px; }
+@media (max-width: 600px) {
+  .app-header { padding-block: 13px 14px; }
+  .brand { font-size: 19px; gap: 9px; }
+  .brand img { width: 54px; height: 54px; }
+  .dashboard-heading { padding-block: 25px 20px; }
+  .dashboard-heading .eyebrow { font-size: 12px; letter-spacing: 0; }
+  .dashboard-heading h1 { font-size: 28px; letter-spacing: -0.02em; }
+  .dashboard-heading > p:last-child { font-size: 14px; }
+  .dashboard-grid { gap: 12px; }
+  .tile { min-height: 190px; padding: 13px; }
+  .tile-copy { max-width: 100%; }
+  .tile h2 { font-size: clamp(17px, 4.8vw, 23px); }
+  .tile p { font-size: 12px; }
+  .tile-art { position: relative; inset: auto; opacity: .8; }
+  .tile .illustration { width: 70px; height: 70px; }
+  .tile-number { font-size: 12px; padding: 4px 7px; }
+}
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
+
+/* Standalone tile motifs from SUMSI design system */
+.tile .tile-motif { display:block; width:106px; height:106px; max-width:100%; object-fit:contain; }
+.tile .tile-motif-bee { border-radius:16px; }
+@media (max-width:600px) {
+  .tile .tile-motif { width:76px; height:76px; }
+  .tile-art { z-index:0; }
+}
+@media (max-width:350px) { .tile .tile-motif { width:68px; height:68px; } }
+
+
+/* Exercise views: SUMSI design system */
+.exercise-view { max-width:560px; padding-top:24px; padding-bottom:28px; }
+.view-toolbar { margin-bottom:26px; }
+.back-button { border:2px solid var(--espresso); border-radius:12px; background:var(--cream); font-family:"Space Grotesk",sans-serif; font-weight:700; min-height:48px; }
+.back-button:hover { background:var(--lavender); }
+.view-index { color:var(--plum); letter-spacing:0; font-size:12px; font-weight:600; }
+.exercise-heading .eyebrow { text-transform:none; letter-spacing:0; font-size:13px; font-weight:600; }
+.exercise-heading h1 { font-weight:700; font-size:clamp(28px,5vw,36px); letter-spacing:-.02em; }
+.exercise-heading > p:last-child { font-size:16px; line-height:1.6; }
+.audio-art { margin-block:25px; height:235px; border:2px solid var(--espresso); border-radius:18px; background:var(--lilac); box-shadow:4px 4px 0 var(--espresso); }
+.view-oma .audio-art { background:var(--mauve); border-radius:18px; }
+.audio-art > span { font-weight:700; font-size:clamp(24px,5vw,32px); letter-spacing:-.02em; transform:none; }
+.audio-art .illustration { stroke-width:3; transform:none; }
+.button { min-height:48px; border:2px solid var(--espresso); border-radius:12px; font-family:"Space Grotesk",sans-serif; font-weight:700; box-shadow:2px 2px 0 var(--espresso); }
+.button:active { transform:translate(2px,2px); box-shadow:none; }
+.button.dark { background:var(--plum); color:var(--cream); }
+.button.dark:hover { background:var(--espresso); }
+.button.outline { background:var(--cream); }
+.button.outline:hover { background:var(--lavender); }
+.link-settings[open] { background:var(--lavender); border:2px solid var(--espresso); border-radius:18px; }
+.link-settings summary { min-height:48px; font-weight:600; }
+.input-row input { border:2px solid var(--espresso); border-radius:8px; }
+.input-row button { background:var(--plum); color:var(--cream); border:2px solid var(--espresso); border-radius:12px; min-height:48px; font-weight:700; }
+.input-row button:hover { background:var(--espresso); }
+.box-track { background:var(--lavender); border:3px solid var(--espresso); border-radius:5px; }
+.box-dot { background:var(--plum); border:3px solid var(--cream); box-shadow:0 0 0 2px var(--espresso); }
+.breath-circle { background:var(--lilac); border:3px solid var(--espresso); }
+.phase { font-weight:700; }
+.seconds { font-size:64px; font-weight:700; letter-spacing:-.02em; }
+.readout-note { font-size:12px; letter-spacing:0; }
+.exercise-note { font-size:14px; font-weight:600; }
+.gentle-note { font-size:13px; background:var(--lavender); border:1.5px solid var(--border); border-radius:12px; padding:15px; margin-top:24px; }
+@media(max-width:600px) {
+  .exercise-view { padding-top:18px; }
+  .view-toolbar { margin-bottom:22px; }
+  .exercise-heading h1 { font-size:28px; }
+  .exercise-heading > p:last-child { font-size:15px; }
+  .audio-art { height:205px; gap:12px; }
+  .audio-art > span { font-size:24px; }
+  .breath-stage { height:285px; }
+  .seconds { font-size:64px; }
+  .gentle-note { font-size:13px; }
+}
+@media(prefers-reduced-motion:reduce) { .button { transition:none; } }
+
+/* Hummelmodus illustration: approved bee and humming lettering */
+.view-hummel .hummel-audio-art { flex-direction:column; gap:8px; }
+.view-hummel .hummel-bee { display:block; width:112px; height:112px; object-fit:contain; border-radius:16px; }
+.view-hummel .audio-hum { font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:clamp(28px,5vw,36px); line-height:1; color:var(--espresso); letter-spacing:-.02em; transform:none; }
+@media(max-width:600px) {
+  .view-hummel .hummel-bee { width:100px; height:100px; }
+  .view-hummel .audio-hum { font-size:30px; }
+}
+
+/* Hummelmodus: bee alongside the short message */
+.view-hummel .hummel-audio-art { flex-direction:row; gap:22px; }
+.view-hummel .audio-hum { font-size:clamp(23px,4vw,32px); line-height:1.1; }
+@media(max-width:600px) { .view-hummel .hummel-audio-art { flex-direction:row; gap:12px; } .view-hummel .hummel-bee { width:92px; height:92px; flex-shrink:0; } .view-hummel .audio-hum { font-size:clamp(20px,5.3vw,27px); } }
+
+/* Second audio resource on the Inner Oma page */
+.view-oma .oma-spotify-link { display:flex; justify-content:space-between; width:100%; margin-top:12px; }
+
+/* Innere Oma – armchair from the dashboard motif set */
+.view-oma .oma-chair { display:block; width:130px; height:130px; object-fit:contain; flex-shrink:0; }
+@media(max-width:600px) { .view-oma .oma-chair { width:105px; height:105px; } }
+
+.view-hummel .hummel-youtube-link { display:flex; justify-content:space-between; width:100%; margin-top:12px; }
+
+/* Brief guidance under the Boxatmung timer */
+.view-box .exercise-tip { font-size:14px; line-height:1.55; text-align:center; margin:0 0 16px; color:var(--espresso); }
+@media(max-width:600px) { .view-box .exercise-tip { font-size:13px; } }
+
+/* SUMSI bee replaces the animated dot on the Boxatmung track */
+.view-box .box-dot {
+  width: 40px;
+  height: 40px;
+  background: url("./assets/sumsi-biene-transparent.png") center / contain no-repeat;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Guidance for the 4/8 breathing exercise */
+.view-lang .exercise-tip { font-size:14px; line-height:1.55; text-align:center; margin:0 0 16px; color:var(--espresso); }
+@media(max-width:600px) { .view-lang .exercise-tip { font-size:13px; } }
+
+/* Keep the accessibility preference visible only on animated exercises. */
+.motion-setting[hidden] { display: none; }
+
+/* Separate platform-specific link settings */
+.link-settings form + form { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(75,52,47,.16); }
+
+/* Bold & playful compact wordmark, inspired by visual concept 3. */
+.brand .brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  color: var(--espresso);
+  font-family: "Arial Rounded MT Bold", "Nunito", "DM Sans", system-ui, sans-serif;
+  font-weight: 1000;
+  font-size: 24px;
+  line-height: .87;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.brand .brand-top, .brand .brand-bottom { display: block; }
+.brand .brand-bottom { margin-top: 4px; }
+.brand .brand-o { display: inline-block; position: relative; }
+.brand .brand-heart {
+  position: absolute;
+  display: block;
+  top: 48%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  font-size: .40em;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #D6A7B8;
+  text-shadow: 0 0 1px #D6A7B8;
+}
+@media (max-width: 600px) {
+  .brand .brand-wordmark { font-size: 20px; }
+}
