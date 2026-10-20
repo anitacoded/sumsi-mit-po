@@ -16,7 +16,23 @@ Die Website anschließend im Browser über den lokalen Server öffnen. Alternati
 
 Der vorhandene Workflow `.github/workflows/static.yml` veröffentlicht ausschließlich bei Push auf `main` oder manuellem Start. In **Settings → Pages** muss **GitHub Actions** als Quelle eingestellt sein. Feature-Branches werden nicht automatisch veröffentlicht. Erst nach Prüfung und Merge des Redesign-PRs kann der normale Main-Workflow das Design veröffentlichen.
 
-Alle Assets einschließlich Space Grotesk und DM Sans werden lokal mit relativen Dateipfaden geladen. Die Mini-App funktioniert unter einem Repository-Unterpfad, ohne Backend oder Build. Die Schriftdateien stammen aus den Fontsource-Paketen (Version 5.3.0); ihre SIL-OFL-Lizenzen liegen unter `assets/fonts/`.
+Alle Assets einschließlich Space Grotesk und DM Sans werden lokal mit relativen Dateipfaden geladen. Die Mini-App funktioniert unter einem Repository-Unterpfad, ohne Backend. Der Pages-Workflow erzeugt vor dem Upload automatisch versionierte CSS- und JavaScript-Dateien. Die Schriftdateien stammen aus den Fontsource-Paketen (Version 5.3.0); ihre SIL-OFL-Lizenzen liegen unter `assets/fonts/`.
+
+## Cache-Versionierung beim Deployment
+
+`python3 scripts/build_site.py` erzeugt `_site/` mit Inhalts-Hashes in den Dateinamen, etwa `styles.<hash>.css` und `app.<hash>.js`. Die erzeugte HTML-Datei referenziert genau diese Dateien. Jede Änderung an CSS oder JavaScript ändert automatisch deren URL; ein Browser kann deshalb für die neue HTML-Version keine alte Datei unter derselben URL aus seinem Cache verwenden. Unveränderte Dateien behalten ihre URL. Es gibt keine Versionsnummer, die man manuell erhöhen muss.
+
+Der GitHub-Pages-Workflow prüft die Versionierung, baut die Website und lädt ausschließlich `_site/` als ein gemeinsames Deployment-Artefakt hoch. HTML, CSS und JavaScript passen damit im Artefakt zusammen. Relative Pfade sowie Schrift- und Bilddateien bleiben erhalten. Die Quellen lassen sich weiterhin ohne Build lokal starten. Keine Cache-Header oder Service Worker werden benötigt.
+
+Das erzeugte Deployment lokal testen:
+
+```sh
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 scripts/build_site.py
+python3 -m http.server 8000 --directory _site
+```
+
+Bereits geöffnete Seiten werden nicht automatisch neu geladen. Solange der Browser noch eine vollständig zwischengespeicherte alte HTML-Seite zeigt, kann er diese weiter anzeigen; nach Abruf der neuen HTML-Datei gelten die neuen Asset-URLs. Für die Umstellung von der bisherigen unversionierten Auslieferung kann einmaliges Neuladen erforderlich sein. Die Versionierung wird durch den GitHub-Actions-Workflow wirksam, nicht durch bloßes Hochladen der unverarbeiteten Quelldateien.
 
 ## Dashboard und Navigation
 
