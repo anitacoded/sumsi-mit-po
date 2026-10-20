@@ -1,0 +1,8 @@
+/* Kompatibilitäts-Aliase für die bestehende Website (anitacoded/sumsi-mit-po, styles.css).
+   Erlauben eine schrittweise Migration: alte Variablennamen zeigen auf die neuen Tokens.
+   Nach vollständiger Migration entfernen. */
+:root{
+--plum:var(--deep-plum);
+--lavender:var(--light-lavender);
+--border:var(--border-soft);
+}
