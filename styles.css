@@ -913,3 +913,12 @@ body:has(.is-running) .app-footer {
   .gentle-note { font-size:13px; }
 }
 @media(prefers-reduced-motion:reduce) { .button { transition:none; } }
+
+/* Hummelmodus illustration: approved bee and humming lettering */
+.view-hummel .hummel-audio-art { flex-direction:column; gap:8px; }
+.view-hummel .hummel-bee { display:block; width:112px; height:112px; object-fit:contain; border-radius:16px; }
+.view-hummel .audio-hum { font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:clamp(28px,5vw,36px); line-height:1; color:var(--espresso); letter-spacing:-.02em; transform:none; }
+@media(max-width:600px) {
+  .view-hummel .hummel-bee { width:100px; height:100px; }
+  .view-hummel .audio-hum { font-size:30px; }
+}
