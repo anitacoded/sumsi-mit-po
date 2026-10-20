@@ -225,10 +225,11 @@ function showRoute(moveFocus = true) {
   }
   document.querySelector("#dashboard").hidden = Boolean(route);
   activeRoute = route;
+  document.querySelector(".motion-setting").hidden = route !== "box" && route !== "lang";
   const title = route
     ? document.querySelector(`#${route}-title`).textContent
     : "";
-  document.title = `${title ? title + " · " : ""}SUMSI MIT PO · Kleine Pausen für laute Köpfe`;
+  document.title = `${title ? title + " · " : ""}SUMSI MIT PO · Kleine Pause für dich`;
   // Link settings stay tucked away whenever a view is entered again.
   for (const details of document.querySelectorAll(".link-settings"))
     details.open = false;
