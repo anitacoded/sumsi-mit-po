@@ -1,7 +1,7 @@
 "use strict";
 
 const defaults = {
-  hummel: "https://www.youtube.com/results?search_query=lofi+chill+music",
+  hummel: "https://open.spotify.com/track/3cXuhDMnE9ApbOWVmWzdEM?si=nsYneCRdQkO9WWvL_TGzdQ",
   oma: "https://www.youtube.com/watch?v=4stJ7TCcHMM",
 };
 const allowedHosts = new Set([
