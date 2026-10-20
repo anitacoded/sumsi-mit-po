@@ -960,3 +960,37 @@ body:has(.is-running) .app-footer {
 
 /* Separate platform-specific link settings */
 .link-settings form + form { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(75,52,47,.16); }
+
+/* Bold & playful compact wordmark, inspired by visual concept 3. */
+.brand .brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  color: var(--espresso);
+  font-family: "Arial Rounded MT Bold", "Nunito", "DM Sans", system-ui, sans-serif;
+  font-weight: 1000;
+  font-size: 24px;
+  line-height: .87;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.brand .brand-top, .brand .brand-bottom { display: block; }
+.brand .brand-bottom { margin-top: 4px; }
+.brand .brand-o { display: inline-block; position: relative; }
+.brand .brand-heart {
+  position: absolute;
+  display: block;
+  top: 48%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  font-size: .40em;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #D6A7B8;
+  text-shadow: 0 0 1px #D6A7B8;
+}
+@media (max-width: 600px) {
+  .brand .brand-wordmark { font-size: 20px; }
+}
