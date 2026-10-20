@@ -940,3 +940,13 @@ body:has(.is-running) .app-footer {
 /* Brief guidance under the Boxatmung timer */
 .view-box .exercise-tip { font-size:14px; line-height:1.55; text-align:center; margin:0 0 16px; color:var(--espresso); }
 @media(max-width:600px) { .view-box .exercise-tip { font-size:13px; } }
+
+/* SUMSI bee replaces the animated dot on the Boxatmung track */
+.view-box .box-dot {
+  width: 28px;
+  height: 28px;
+  background: url("./assets/sumsi-biene-icon.png") center / contain no-repeat;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
