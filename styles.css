@@ -858,3 +858,12 @@ body:has(.is-running) .app-footer {
   .tile-number { font-size: 12px; padding: 4px 7px; }
 }
 @media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
+
+/* Standalone tile motifs from SUMSI design system */
+.tile .tile-motif { display:block; width:106px; height:106px; max-width:100%; object-fit:contain; }
+.tile .tile-motif-bee { border-radius:16px; }
+@media (max-width:600px) {
+  .tile .tile-motif { width:76px; height:76px; }
+  .tile-art { z-index:0; }
+}
+@media (max-width:350px) { .tile .tile-motif { width:68px; height:68px; } }
