@@ -994,3 +994,11 @@ body:has(.is-running) .app-footer {
 @media (max-width: 600px) {
   .brand .brand-wordmark { font-size: 20px; }
 }
+
+/* Small bee fact below the four dashboard pauses */
+.dashboard-fun-fact { display:flex; align-items:flex-start; gap:14px; margin:24px 0 36px; padding:18px 20px; background:var(--lavender); border:2px solid var(--espresso); border-radius:18px; color:var(--espresso); }
+.dashboard-fun-fact .fun-fact-icon { font-size:24px; line-height:1.2; color:var(--plum); }
+.dashboard-fun-fact p { margin:0; font-size:15px; line-height:1.5; }
+.dashboard-fun-fact strong { display:block; font-size:12px; letter-spacing:.08em; margin-bottom:5px; }
+.dashboard-fun-fact p span { display:block; }
+@media(max-width:600px) { .dashboard-fun-fact { margin-top:20px; padding:15px; gap:10px; } .dashboard-fun-fact p { font-size:13px; } }
