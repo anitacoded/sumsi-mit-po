@@ -1009,3 +1009,6 @@ body:has(.is-running) .app-footer {
 .dashboard-fun-fact .fun-fact-copy h2 { font-size:clamp(19px, 4vw, 23px); line-height:1.2; margin:0 0 8px; color:var(--espresso); }
 .dashboard-fun-fact .fun-fact-copy p { margin:0; line-height:1.5; font-size:15px; }
 @media(max-width:600px) { .dashboard-fun-fact .fun-fact-copy p { font-size:13px; } }
+
+/* SUMSI wordplay uses inline emphasis, not the old fact heading layout */
+.dashboard-fun-fact .fun-fact-copy p strong { display:inline; font-size:inherit; letter-spacing:normal; margin:0; }
