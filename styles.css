@@ -1002,3 +1002,13 @@ body:has(.is-running) .app-footer {
 .dashboard-fun-fact strong { display:block; font-size:12px; letter-spacing:.08em; margin-bottom:5px; }
 .dashboard-fun-fact p span { display:block; }
 @media(max-width:600px) { .dashboard-fun-fact { margin-top:20px; padding:15px; gap:10px; } .dashboard-fun-fact p { font-size:13px; } }
+
+/* Box breathing eyes-closed experimental audio mode */
+.view-box .eyes-option { margin: 16px 0 18px; }
+.view-box .eyes-toggle { width: 100%; display:flex; gap:12px; align-items:center; justify-content:flex-start; padding:14px 16px; background:var(--lavender); border:2px solid var(--espresso); border-radius:16px; color:var(--espresso); font:inherit; font-weight:700; cursor:pointer; text-align:left; }
+.view-box .eyes-toggle .icon { width:23px; height:23px; flex-shrink:0; }
+.view-box .eyes-toggle .eyes-state { margin-left:auto; padding:3px 10px; border-radius:20px; background:var(--cream); border:1px solid currentColor; font-size:12px; }
+.view-box .eyes-toggle[aria-pressed="true"] { background:var(--lilac); }
+.view-box .eyes-toggle:focus-visible { outline:3px solid var(--purple); outline-offset:3px; }
+.view-box .eyes-hint { margin:10px 0 0; padding:13px 16px; background:var(--cream); border-left:4px solid var(--plum); font-size:14px; line-height:1.55; }
+.view-box .eyes-hint[hidden] { display:none; }
