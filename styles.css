@@ -1092,3 +1092,23 @@ body:has(.is-running) .app-footer {
   .view-thought .thought-card {padding:19px;min-height:260px;}
   .view-thought .thought-card-footer {flex-wrap:wrap;}
 }
+
+
+/* Gedankenstücke tile: place motif in its own row, never over the title. */
+.tile-thought .tile-art {
+  position: relative;
+  right: auto;
+  top: auto;
+  z-index: 0;
+  align-self: flex-end;
+  margin: 8px 0 0;
+  height: 100px;
+}
+.tile-thought .thought-tile-icon { width: 100px; height: 100px; }
+.tile-thought .tile-copy { position: relative; z-index: 1; width: 100%; max-width: 100%; margin-top: 8px; }
+.tile-thought h2 { max-width: 100%; margin: 0 0 6px; }
+@media (max-width: 600px) {
+  .tile-thought .tile-art { height: 78px; margin-top: 4px; }
+  .tile-thought .thought-tile-icon { width: 78px; height: 78px; }
+  .tile-thought .tile-copy { max-width: 100%; }
+}
