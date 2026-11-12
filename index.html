@@ -367,11 +367,33 @@
           <p class="eyebrow">Lass mal Luft raus.</p>
           <h1 id="lang-title" tabindex="-1">4/8-Atmung</h1>
           <p>
-            Bei der 4/8-Atmung atmest du vier Sekunden ein und acht Sekunden
-            aus. Die längere Ausatmung kann helfen, zur Ruhe zu kommen und
+            Atme vier Sekunden ein und wähle, ob du vier, sechs oder acht Sekunden
+            ausatmen möchtest. Eine sanfte, längere Ausatmung kann helfen, zur Ruhe zu kommen und
             Anspannung loszulassen. Gut für kleine Pausen zwischendurch oder
             zum Abschalten am Abend.
           </p>
+        </div>
+        <div class="breath-options">
+          <fieldset class="exhale-options">
+            <legend>Wie lange möchtest du ausatmen?</legend>
+            <div class="exhale-choices">
+              <label><input type="radio" name="exhale-duration" value="4" /><span>4 Sek.</span></label>
+              <label><input type="radio" name="exhale-duration" value="6" /><span>6 Sek.</span></label>
+              <label><input type="radio" name="exhale-duration" value="8" checked /><span>8 Sek.</span></label>
+            </div>
+          </fieldset>
+          <div class="eyes-option">
+            <div class="eyes-option-heading">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.7-6 10-6 10 6 10 6-3.7 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Auch mit geschlossenen Augen</span>
+            </div>
+            <button class="eyes-toggle" type="button" aria-pressed="false" aria-describedby="lang-eyes-hint">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15 9a5 5 0 0 1 0 6M18 6a9 9 0 0 1 0 12"/></svg>
+              <span>Sanfte Sekundentöne</span>
+              <span class="eyes-state">Aus</span>
+            </button>
+            <p id="lang-eyes-hint" class="eyes-hint">Mit Ton kannst du die Augen schließen: vier Töne beim Einatmen, danach 4, 6 oder 8 beim Ausatmen. Ein etwas höherer Ton markiert den Wechsel. Bitte die Medienlautstärke einschalten.</p>
+          </div>
         </div>
         <div class="breath-stage">
           <div class="breath-circle" aria-hidden="true"></div>
@@ -410,8 +432,7 @@
         </div>
         <p class="exercise-note">4 Sek. ein · 8 Sek. aus</p>
         <p class="exercise-tip">So geht’s: Atme ruhig ein und langsam wieder aus.
-          Folge dem Kreis für ein paar Runden. Du musst die acht Sekunden nicht
-          erzwingen – passe den Rhythmus an, wenn es sich angenehmer anfühlt.</p>
+          Folge dem Kreis für ein paar Runden. Wähle einfach die Ausatemlänge, die sich für dich angenehm anfühlt.</p>
         <p class="gentle-note">
           Achte darauf, dass du bequem und ohne Druck atmen kannst. Wenn es dir
           unangenehm wird oder dir schwindelig wird, pausiere und atme normal weiter.
