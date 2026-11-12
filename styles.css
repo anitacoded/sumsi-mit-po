@@ -1012,3 +1012,8 @@ body:has(.is-running) .app-footer {
 .view-box .eyes-toggle:focus-visible { outline:3px solid var(--purple); outline-offset:3px; }
 .view-box .eyes-hint { margin:10px 0 0; padding:13px 16px; background:var(--cream); border-left:4px solid var(--plum); font-size:14px; line-height:1.55; }
 .view-box .eyes-hint[hidden] { display:none; }
+
+/* Boxatmung: eye cue and optional soft one-second chimes */
+.view-box .eyes-option-heading { display:flex; gap:9px; align-items:center; font-size:14px; font-weight:700; margin-bottom:9px; color:var(--espresso); }
+.view-box .eyes-option-heading .icon { width:21px; height:21px; flex-shrink:0; }
+.view-box .eyes-option .eyes-hint { border-left:0; background:transparent; margin:8px 0 0; padding:0 3px; font-size:13px; line-height:1.5; }
