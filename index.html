@@ -464,18 +464,22 @@
         </div>
         <div class="thought-dialog-panel">
           <div class="thought-card" aria-live="off">
-            <p class="thought-overline"><span aria-hidden="true">✦</span> SUMSIS GEDANKENSTÜCK</p>
             <p class="thought-main" id="thought-main"></p>
             <p class="thought-sub" id="thought-sub"></p>
             <div class="thought-response" id="thought-response" role="status" aria-live="polite" hidden></div>
-            <div class="thought-card-footer"><span>Ein kleiner Gedanke. Kein Muss.</span><button class="thought-favorite" type="button" aria-pressed="false" aria-label="Gedankenstück merken">♡ Merken</button></div>
+            <div class="thought-card-footer"><button class="thought-favorite" type="button" aria-pressed="false" aria-label="Gedankenstück merken">♡ Merken</button><button class="thought-next" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.5 10A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.5-3"/></svg>Anderer Gedanke</button></div>
           </div>
-          <p class="thought-question">SUMSI fragt: Wie fühlt sich der Gedanke für dich an?</p>
+          <div class="thought-sumsi-question">
+            <img class="thought-sumsi-bee" src="./assets/sumsi-biene-icon.png" alt="SUMSI, die kleine Biene" width="70" height="70" />
+            <div class="thought-question-bubble">
+              <p class="thought-question-label">SUMSI fragt:</p>
+              <p class="thought-question">Wie fühlt sich der Gedanke für dich an?</p>
+            </div>
+          </div>
           <div class="thought-actions">
             <button class="button dark thought-yes" type="button">Passt gerade</button>
             <button class="button outline thought-no" type="button">Glaube ich gerade nicht</button>
           </div>
-          <button class="thought-next" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.5 10A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.5-3"/></svg>Anderer Gedanke</button>
         </div>
         <div class="thought-saved-panel" hidden>
           <p class="thought-saved-intro">Hier landen die Gedankenstücke, die du behalten möchtest. Nur auf diesem Gerät gespeichert.</p>
