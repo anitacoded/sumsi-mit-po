@@ -1027,3 +1027,23 @@ body:has(.is-running) .app-footer {
 .view-box .eyes-option-heading { display:flex; gap:9px; align-items:center; font-size:14px; font-weight:700; margin-bottom:9px; color:var(--espresso); }
 .view-box .eyes-option-heading .icon { width:21px; height:21px; flex-shrink:0; }
 .view-box .eyes-option .eyes-hint { border-left:0; background:transparent; margin:8px 0 0; padding:0 3px; font-size:13px; line-height:1.5; }
+
+/* Flexible 4/4, 4/6 and 4/8 breathing with optional chimes */
+.view-lang .breath-options { margin: 12px 0 20px; }
+.view-lang .exhale-options { border:0; margin:0 0 20px; padding:0; min-width:0; }
+.view-lang .exhale-options legend { font-size:14px; font-weight:700; margin-bottom:10px; color:var(--espresso); }
+.view-lang .exhale-choices { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+.view-lang .exhale-choices label { display:block; position:relative; cursor:pointer; }
+.view-lang .exhale-choices input { position:absolute; opacity:0; width:1px; height:1px; }
+.view-lang .exhale-choices span { display:block; text-align:center; border:2px solid var(--espresso); border-radius:14px; background:var(--cream); padding:11px 7px; color:var(--espresso); font-weight:700; }
+.view-lang .exhale-choices input:checked + span { background:var(--lilac); box-shadow:3px 3px 0 var(--espresso); }
+.view-lang .exhale-choices input:focus-visible + span { outline:3px solid var(--purple); outline-offset:3px; }
+.view-lang .eyes-option { margin:0; }
+.view-lang .eyes-option-heading { display:flex; gap:9px; align-items:center; font-size:14px; font-weight:700; margin-bottom:9px; color:var(--espresso); }
+.view-lang .eyes-option-heading .icon { width:21px; height:21px; flex-shrink:0; }
+.view-lang .eyes-toggle { width:100%; display:flex; gap:12px; align-items:center; padding:14px 16px; background:var(--lavender); border:2px solid var(--espresso); border-radius:16px; color:var(--espresso); font:inherit; font-weight:700; cursor:pointer; text-align:left; }
+.view-lang .eyes-toggle .icon { width:23px; height:23px; flex-shrink:0; }
+.view-lang .eyes-toggle .eyes-state { margin-left:auto; padding:3px 10px; border-radius:20px; background:var(--cream); border:1px solid currentColor; font-size:12px; }
+.view-lang .eyes-toggle[aria-pressed="true"] { background:var(--lilac); }
+.view-lang .eyes-toggle:focus-visible { outline:3px solid var(--purple); outline-offset:3px; }
+.view-lang .eyes-hint { margin:8px 0 0; padding:0 3px; font-size:13px; line-height:1.5; }
