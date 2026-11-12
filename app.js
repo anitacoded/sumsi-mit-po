@@ -151,22 +151,14 @@ class BreathingExercise {
     this.audioEnabled = false;
     this.audioContext = null;
     this.eyesToggle = element.querySelector(".eyes-toggle");
-    this.eyesHint = element.querySelector(".eyes-hint");
     if (this.eyesToggle) this.eyesToggle.addEventListener("click", () => {
       this.audioEnabled = !this.audioEnabled;
       this.eyesToggle.setAttribute("aria-pressed", String(this.audioEnabled));
       this.eyesToggle.querySelector(".eyes-state").textContent = this.audioEnabled ? "An" : "Aus";
-      this.eyesHint.hidden = !this.audioEnabled;
       if (this.audioEnabled) {
-        try {
-          const AudioAPI = window.AudioContext || window.webkitAudioContext;
-          if (AudioAPI && !this.audioContext) this.audioContext = new AudioAPI();
-          this.audioContext?.resume();
-        } catch (_) {}
-        this.lastAudioBeat = -1;
-        if (this.running) this.audioCue(this.elapsed + (performance.now() - this.anchor) / 1000);
-      } else {
-        window.speechSynthesis?.cancel();
+        this.prepareAudio();
+        // Start at the next second when enabling sound mid-exercise.
+        this.lastAudioBeat = Math.floor(this.elapsed + (this.running ? (performance.now() - this.anchor) / 1000 : 0));
       }
     });
     this.toggle = element.querySelector(".toggle");
@@ -187,7 +179,7 @@ class BreathingExercise {
     this.anchor = performance.now();
     this.lastPhase = -1;
     this.lastAudioBeat = -1;
-    if (this.audioEnabled) this.audioContext?.resume();
+    if (this.audioEnabled) this.prepareAudio();
     this.toggle.innerHTML =
       'Pausieren <span aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></span>';
     this.tick();
@@ -198,7 +190,6 @@ class BreathingExercise {
     this.running = false;
     this.element.classList.remove("is-running");
     cancelAnimationFrame(this.frame);
-    if (this.audioEnabled) window.speechSynthesis?.cancel();
     this.render(this.elapsed);
     this.toggle.innerHTML =
       'Fortsetzen <span aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7Z"/></svg></span>';
@@ -217,42 +208,42 @@ class BreathingExercise {
     if (this.isBox && this.audioEnabled) this.audioCue(elapsed);
     this.frame = requestAnimationFrame(() => this.tick());
   }
+  prepareAudio() {
+    try {
+      const AudioAPI = window.AudioContext || window.webkitAudioContext;
+      if (AudioAPI && !this.audioContext) this.audioContext = new AudioAPI();
+      this.audioContext?.resume();
+    } catch (_) {
+      // The visual breathing timer still works if audio is unavailable.
+    }
+  }
   audioCue(elapsed) {
-    // Seconds are derived from the same monotonic clock as the animation.
-    const beat = Math.floor(elapsed + 0.0001);
+    // The sound uses the same elapsed seconds as the box animation.
+    const beat = Math.floor(elapsed);
     if (beat === this.lastAudioBeat) return;
     this.lastAudioBeat = beat;
-    const phaseIndex = Math.floor((elapsed % this.total) / 4);
-    const step = Math.floor(elapsed % 4);
-    if (step === 0 && "speechSynthesis" in window) {
-      // Spoken phase names are guidance; beats supply the precise rhythm.
-      window.speechSynthesis.cancel();
-      const name = this.phases[phaseIndex].name;
-      const phrase = name === "Einatmen" ? "Jetzt einatmen" :
-        name === "Ausatmen" ? "Jetzt ausatmen" : "Halten";
-      const speech = new SpeechSynthesisUtterance(phrase);
-      speech.lang = "de-DE";
-      speech.rate = 1.25;
-      speech.volume = 0.9;
-      window.speechSynthesis.speak(speech);
-    }
-    if (!this.audioContext) return;
+    if (!this.audioContext || this.audioContext.state !== "running") return;
     try {
       const ctx = this.audioContext;
-      if (ctx.state !== "running") return;
-      const start = ctx.currentTime;
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = "sine";
-      oscillator.frequency.value = step === 0 ? 660 : 440;
-      gain.gain.setValueAtTime(0.0001, start);
-      gain.gain.exponentialRampToValueAtTime(0.09, start + 0.012);
-      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.14);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start(start);
-      oscillator.stop(start + 0.15);
-    } catch (_) {}
+      const phaseStart = beat % 4 === 0;
+      const now = ctx.currentTime;
+      // Two quiet sine partials create a warm chime instead of a sharp click.
+      for (const [multiple, peak] of [[1, 0.032], [2, 0.008]]) {
+        const oscillator = ctx.createOscillator();
+        const gain = ctx.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.value = (phaseStart ? 565 : 440) * multiple;
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(peak, now + 0.022);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+        oscillator.start(now);
+        oscillator.stop(now + 0.29);
+      }
+    } catch (_) {
+      // Audio may be blocked by mobile browser settings.
+    }
   }
   render(elapsed) {
     let remaining = elapsed % this.total;
