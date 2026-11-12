@@ -1053,7 +1053,9 @@ body:has(.is-running) .app-footer {
 .tile-thought { background:#f2e8df; border-radius:18px; grid-column:1 / -1; min-height:174px; }
 .tile-thought .tile-copy { max-width:70%; }
 .tile-thought .tile-art { right:10%; top:20%; }
-.tile-thought .thought-tile-spark { display:block; color:var(--plum); font-size:110px; line-height:1; transform:rotate(-14deg); opacity:.65; }
+.tile-thought .thought-tile-icon { display:block; width:110px; height:110px; transform:rotate(-8deg); }
+.tile-thought .thought-bubble { fill:var(--cream); stroke:var(--espresso); stroke-width:4; stroke-linejoin:round; }
+.tile-thought .thought-star { fill:var(--mauve); stroke:var(--espresso); stroke-width:3; stroke-linejoin:round; }
 .tile-thought h2 { max-width:320px; }
 .view-thought .thought-tabs { display:flex; border:2px solid var(--espresso); border-radius:16px; overflow:hidden; margin:24px 0 18px; }
 .view-thought .thought-tab { flex:1; padding:12px 8px; border:0; color:var(--espresso); background:var(--cream); font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
@@ -1086,7 +1088,7 @@ body:has(.is-running) .app-footer {
 @media(max-width:600px) {
   .tile-thought { min-height:160px; }
   .tile-thought .tile-copy { max-width:75%; }
-  .tile-thought .thought-tile-spark {font-size:82px;}
+  .tile-thought .thought-tile-icon {width:82px;height:82px;}
   .view-thought .thought-card {padding:19px;min-height:260px;}
   .view-thought .thought-card-footer {flex-wrap:wrap;}
 }
