@@ -1112,3 +1112,41 @@ body:has(.is-running) .app-footer {
   .tile-thought .thought-tile-icon { width: 78px; height: 78px; }
   .tile-thought .tile-copy { max-width: 100%; }
 }
+
+/* Gedankenstücke: quieter card, quick actions together, and SUMSI speaking. */
+.view-thought .thought-card { min-height: 220px; }
+.view-thought .thought-card-footer { justify-content:flex-end; flex-wrap:wrap; gap:10px; }
+.view-thought .thought-card-footer .thought-next {
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  margin:0; padding:9px 12px; border:1px solid var(--espresso);
+  border-radius:25px; background:var(--cream); color:var(--espresso);
+  font:inherit; font-size:12px; font-weight:700; cursor:pointer;
+}
+.view-thought .thought-card-footer .thought-next .icon { width:16px; height:16px; }
+.view-thought .thought-sumsi-question {
+  display:flex; align-items:flex-end; gap:10px; margin:26px 0 13px;
+}
+.view-thought .thought-sumsi-bee { width:65px; height:65px; object-fit:contain; flex-shrink:0; }
+.view-thought .thought-question-bubble {
+  position:relative; flex:1; min-width:0; background:var(--cream);
+  border:2px solid var(--espresso); border-radius:17px;
+  padding:11px 14px;
+}
+.view-thought .thought-question-bubble::before {
+  content:""; position:absolute; left:-9px; bottom:18px; width:14px; height:14px;
+  background:var(--cream); border-left:2px solid var(--espresso);
+  border-bottom:2px solid var(--espresso); transform:rotate(45deg);
+}
+.view-thought .thought-question-label {
+  margin:0 0 3px; font-size:11px; font-weight:800; letter-spacing:.04em; color:var(--plum);
+}
+.view-thought .thought-question-bubble .thought-question {
+  margin:0; font-size:14px; line-height:1.4; font-weight:700;
+}
+@media (max-width:600px) {
+  .view-thought .thought-card { min-height:210px; }
+  .view-thought .thought-card-footer { justify-content:space-between; }
+  .view-thought .thought-sumsi-bee { width:54px; height:54px; }
+  .view-thought .thought-sumsi-question { gap:8px; }
+  .view-thought .thought-question-bubble { padding:10px 12px; }
+}
