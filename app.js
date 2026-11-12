@@ -150,6 +150,22 @@ class BreathingExercise {
     this.lastAudioBeat = -1;
     this.audioEnabled = false;
     this.audioContext = null;
+    this.exhaleInputs = element.querySelectorAll('input[name="exhale-duration"]');
+    for (const input of this.exhaleInputs) input.addEventListener("change", () => {
+      if (!input.checked) return;
+      this.phases[1].duration = Number(input.value);
+      this.total = this.phases.reduce((sum, phase) => sum + phase.duration, 0);
+      // Changing the pattern starts a clean cycle, without a phase jump.
+      if (this.running) this.pause();
+      this.elapsed = 0;
+      this.lastPhase = -1;
+      this.lastAudioBeat = -1;
+      this.started = false;
+      this.render(0);
+      this.element.querySelector(".exercise-note").textContent = `4 Sek. ein · ${input.value} Sek. aus`;
+      this.status.textContent = `Bereit für 4 Sekunden Einatmen und ${input.value} Sekunden Ausatmen.`;
+      this.toggle.innerHTML = 'Starten <span aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7Z"/></svg></span>';
+    });
     this.eyesToggle = element.querySelector(".eyes-toggle");
     if (this.eyesToggle) this.eyesToggle.addEventListener("click", () => {
       this.audioEnabled = !this.audioEnabled;
@@ -205,7 +221,7 @@ class BreathingExercise {
     if (!this.running) return;
     const elapsed = this.elapsed + (performance.now() - this.anchor) / 1000;
     this.render(elapsed);
-    if (this.isBox && this.audioEnabled) this.audioCue(elapsed);
+    if (this.audioEnabled) this.audioCue(elapsed);
     this.frame = requestAnimationFrame(() => this.tick());
   }
   prepareAudio() {
@@ -218,14 +234,15 @@ class BreathingExercise {
     }
   }
   audioCue(elapsed) {
-    // The sound uses the same elapsed seconds as the box animation.
+    // The sound uses the same elapsed seconds and phase durations as the animation.
     const beat = Math.floor(elapsed);
     if (beat === this.lastAudioBeat) return;
     this.lastAudioBeat = beat;
     if (!this.audioContext || this.audioContext.state !== "running") return;
     try {
       const ctx = this.audioContext;
-      const phaseStart = beat % 4 === 0;
+      const cycleSecond = beat % this.total;
+      const phaseStart = cycleSecond === 0 || cycleSecond === this.phases[0].duration;
       const now = ctx.currentTime;
       // Two quiet sine partials create a warm chime instead of a sharp click.
       for (const [multiple, peak] of [[1, 0.032], [2, 0.008]]) {
