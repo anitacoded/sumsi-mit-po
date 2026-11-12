@@ -1047,3 +1047,46 @@ body:has(.is-running) .app-footer {
 .view-lang .eyes-toggle[aria-pressed="true"] { background:var(--lilac); }
 .view-lang .eyes-toggle:focus-visible { outline:3px solid var(--purple); outline-offset:3px; }
 .view-lang .eyes-hint { margin:8px 0 0; padding:0 3px; font-size:13px; line-height:1.5; }
+
+
+/* Sumsis Gedankenstücke: one readable thought, with a gentle mini-dialog */
+.tile-thought { background:#f2e8df; border-radius:18px; grid-column:1 / -1; min-height:174px; }
+.tile-thought .tile-copy { max-width:70%; }
+.tile-thought .tile-art { right:10%; top:20%; }
+.tile-thought .thought-tile-spark { display:block; color:var(--plum); font-size:110px; line-height:1; transform:rotate(-14deg); opacity:.65; }
+.tile-thought h2 { max-width:320px; }
+.view-thought .thought-tabs { display:flex; border:2px solid var(--espresso); border-radius:16px; overflow:hidden; margin:24px 0 18px; }
+.view-thought .thought-tab { flex:1; padding:12px 8px; border:0; color:var(--espresso); background:var(--cream); font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+.view-thought .thought-tab + .thought-tab { border-left:1px solid var(--espresso); }
+.view-thought .thought-tab[aria-pressed="true"] { background:var(--lilac); }
+.view-thought .thought-tab:focus-visible, .view-thought button:focus-visible { outline:3px solid var(--purple); outline-offset:2px; }
+.view-thought .thought-saved-count { display:inline-block; min-width:18px; font-variant-numeric:tabular-nums; }
+.view-thought .thought-card { background:var(--lavender); border:2px solid var(--espresso); border-radius:22px; box-shadow:5px 5px 0 var(--espresso); padding:24px; min-height:270px; display:flex; flex-direction:column; }
+.view-thought .thought-overline { color:var(--plum); font-size:12px; font-weight:800; letter-spacing:.09em; margin:0 0 22px; }
+.view-thought .thought-main { font-family:"Space Grotesk",sans-serif; font-size:clamp(24px,5vw,31px); font-weight:700; letter-spacing:-.035em; line-height:1.2; margin:0 0 15px; }
+.view-thought .thought-sub { font-size:15px; line-height:1.5; margin:0 0 22px; color:var(--plum); }
+.view-thought .thought-response { background:var(--cream); border-left:3px solid var(--plum); border-radius:0 12px 12px 0; padding:12px 14px; margin:0 0 18px; font-size:14px; line-height:1.5; }
+.view-thought .thought-response[hidden], .view-thought .thought-saved-panel[hidden], .view-thought .thought-dialog-panel[hidden], .view-thought .thought-empty[hidden] {display:none;}
+.view-thought .thought-card-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:auto; padding-top:14px; border-top:1px solid rgba(75,52,47,.2); font-size:12px; }
+.view-thought .thought-favorite { flex-shrink:0; background:var(--cream); border:1px solid var(--espresso); border-radius:25px; padding:9px 12px; color:var(--espresso); font:inherit; font-weight:700; cursor:pointer; }
+.view-thought .thought-favorite[aria-pressed="true"] { background:var(--mauve); }
+.view-thought .thought-question { margin:28px 0 12px; font-weight:700; font-size:15px; }
+.view-thought .thought-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.view-thought .thought-actions .button { justify-content:center; padding:13px 10px; min-height:54px; font-size:13px; white-space:normal; }
+.view-thought .thought-next { margin:18px auto 0; padding:12px 16px; border:1px solid var(--espresso); border-radius:25px; background:transparent; color:var(--espresso); display:flex; align-items:center; gap:9px; font:inherit; font-weight:700; cursor:pointer; }
+.view-thought .thought-next .icon {width:18px;height:18px;}
+.view-thought .thought-privacy, .view-thought .thought-saved-intro { font-size:13px; line-height:1.55; margin:25px 0 12px; color:var(--plum); }
+.view-thought .thought-empty { background:var(--lavender); padding:20px; border-radius:15px; line-height:1.5; }
+.view-thought .thought-saved-list { display:grid; gap:13px; }
+.view-thought .thought-saved-item { border:2px solid var(--espresso); background:var(--cream); border-radius:16px; padding:17px; }
+.view-thought .thought-saved-item p:first-child { font-family:"Space Grotesk",sans-serif; font-size:18px; line-height:1.3; font-weight:700; margin:0 0 9px; }
+.view-thought .thought-saved-item p:nth-child(2) { font-size:13px; line-height:1.5; margin:0 0 15px; color:var(--plum); }
+.view-thought .thought-saved-controls { display:flex; gap:12px; flex-wrap:wrap; }
+.view-thought .thought-saved-controls button { background:var(--lavender); border:1px solid var(--espresso); border-radius:10px; padding:9px 12px; color:var(--espresso); font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+@media(max-width:600px) {
+  .tile-thought { min-height:160px; }
+  .tile-thought .tile-copy { max-width:75%; }
+  .tile-thought .thought-tile-spark {font-size:82px;}
+  .view-thought .thought-card {padding:19px;min-height:260px;}
+  .view-thought .thought-card-footer {flex-wrap:wrap;}
+}
