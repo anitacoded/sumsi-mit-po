@@ -100,6 +100,11 @@
               <p id="tile-lang-description">Lass mal Luft raus.</p>
             </div></a
           >
+          <a class="tile tile-thought" href="#gedanken" data-open="gedanken" aria-labelledby="tile-thought-title tile-thought-description">
+            <div class="tile-top"><span class="tile-number">Pause 05</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 14.4 9.6 21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z"/></svg></div>
+            <div class="tile-art" aria-hidden="true"><span class="thought-tile-spark">✳</span></div>
+            <div class="tile-copy"><h2 id="tile-thought-title">Sumsis Gedankenstücke</h2><p id="tile-thought-description">Gedanken statt Gedöns.</p></div>
+          </a>
         </div>
         <aside class="dashboard-fun-fact" aria-label="SUMSI Wortspiel">
           <span class="fun-fact-icon" aria-hidden="true">✦</span>
@@ -118,7 +123,7 @@
               <path d="m14 5-7 7 7 7M7 12h14" />
             </svg>
             Alle Pausen</button
-          ><span class="view-index">Pause 01 / 04</span>
+          ><span class="view-index">Pause 01 / 05</span>
         </div>
         <div class="exercise-heading">
           <p class="eyebrow">Summen statt Scrollen.</p>
@@ -199,7 +204,7 @@
               <path d="m14 5-7 7 7 7M7 12h14" />
             </svg>
             Alle Pausen</button
-          ><span class="view-index">Pause 02 / 04</span>
+          ><span class="view-index">Pause 02 / 05</span>
         </div>
         <div class="exercise-heading">
           <p class="eyebrow">Ein Ort, an dem niemand etwas von dir will.</p>
@@ -279,7 +284,7 @@
               <path d="m14 5-7 7 7 7M7 12h14" />
             </svg>
             Alle Pausen</button
-          ><span class="view-index">Pause 03 / 04</span>
+          ><span class="view-index">Pause 03 / 05</span>
         </div>
         <div class="exercise-heading">
           <p class="eyebrow">Vier Ecken gegen Gedankenspaghetti.</p>
@@ -361,7 +366,7 @@
               <path d="m14 5-7 7 7 7M7 12h14" />
             </svg>
             Alle Pausen</button
-          ><span class="view-index">Pause 04 / 04</span>
+          ><span class="view-index">Pause 04 / 05</span>
         </div>
         <div class="exercise-heading">
           <p class="eyebrow">Lass mal Luft raus.</p>
@@ -437,6 +442,42 @@
           Achte darauf, dass du bequem und ohne Druck atmen kannst. Wenn es dir
           unangenehm wird oder dir schwindelig wird, pausiere und atme normal weiter.
         </p>
+      </section>
+      <section class="exercise-view view-thought" id="gedanken" aria-labelledby="gedanken-title" hidden>
+        <div class="view-toolbar">
+          <button class="back-button" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7M7 12h14"/></svg>Alle Pausen</button>
+          <span class="view-index">Pause 05 / 05</span>
+        </div>
+        <div class="exercise-heading">
+          <p class="eyebrow">Gedanken statt Gedöns.</p>
+          <h1 id="gedanken-title" tabindex="-1">Sumsis Gedankenstücke</h1>
+          <p>Kein „Du kannst alles!“-Zauber. Sondern ein kleiner Gedanke, der vielleicht gerade passt. Du musst ihn weder glauben noch schön finden.</p>
+        </div>
+        <div class="thought-tabs" role="group" aria-label="Ansicht wählen">
+          <button class="thought-tab" type="button" data-thought-view="dialog" aria-pressed="true">Ein Gedanke für dich</button>
+          <button class="thought-tab" type="button" data-thought-view="saved" aria-pressed="false">Meine Gedanken <span class="thought-saved-count">0</span></button>
+        </div>
+        <div class="thought-dialog-panel">
+          <div class="thought-card" aria-live="off">
+            <p class="thought-overline"><span aria-hidden="true">✦</span> SUMSIS GEDANKENSTÜCK</p>
+            <p class="thought-main" id="thought-main"></p>
+            <p class="thought-sub" id="thought-sub"></p>
+            <div class="thought-response" id="thought-response" role="status" aria-live="polite" hidden></div>
+            <div class="thought-card-footer"><span>Ein kleiner Gedanke. Kein Muss.</span><button class="thought-favorite" type="button" aria-pressed="false" aria-label="Gedankenstück merken">♡ Merken</button></div>
+          </div>
+          <p class="thought-question">SUMSI fragt: Wie fühlt sich der Gedanke für dich an?</p>
+          <div class="thought-actions">
+            <button class="button dark thought-yes" type="button">Passt gerade</button>
+            <button class="button outline thought-no" type="button">Glaube ich gerade nicht</button>
+          </div>
+          <button class="thought-next" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.5 10A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.5-3"/></svg>Anderer Gedanke</button>
+        </div>
+        <div class="thought-saved-panel" hidden>
+          <p class="thought-saved-intro">Hier landen die Gedankenstücke, die du behalten möchtest. Nur auf diesem Gerät gespeichert.</p>
+          <p class="thought-empty">Noch nichts gemerkt. Wenn dir ein Gedanke gefällt, tippe auf „Merken“.</p>
+          <div class="thought-saved-list"></div>
+        </div>
+        <p class="thought-privacy">Die Gedanken kommen aus einer kleinen, sorgfältig geschriebenen Sammlung – nicht von einer KI. Kein Login, keine Bewertung und kein Muss, positiv zu denken.</p>
       </section>
       <noscript
         ><p class="noscript-note">
