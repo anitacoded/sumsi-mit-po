@@ -147,6 +147,20 @@ class BreathingExercise {
     this.started = false;
     this.frame = null;
     this.lastPhase = -1;
+    this.lastAudioBeat = -1;
+    this.audioEnabled = false;
+    this.audioContext = null;
+    this.eyesToggle = element.querySelector(".eyes-toggle");
+    if (this.eyesToggle) this.eyesToggle.addEventListener("click", () => {
+      this.audioEnabled = !this.audioEnabled;
+      this.eyesToggle.setAttribute("aria-pressed", String(this.audioEnabled));
+      this.eyesToggle.querySelector(".eyes-state").textContent = this.audioEnabled ? "An" : "Aus";
+      if (this.audioEnabled) {
+        this.prepareAudio();
+        // Start at the next second when enabling sound mid-exercise.
+        this.lastAudioBeat = Math.floor(this.elapsed + (this.running ? (performance.now() - this.anchor) / 1000 : 0));
+      }
+    });
     this.toggle = element.querySelector(".toggle");
     this.status = element.querySelector(".breath-status");
     this.toggle.addEventListener("click", () =>
@@ -164,6 +178,8 @@ class BreathingExercise {
     this.started = true;
     this.anchor = performance.now();
     this.lastPhase = -1;
+    this.lastAudioBeat = -1;
+    if (this.audioEnabled) this.prepareAudio();
     this.toggle.innerHTML =
       'Pausieren <span aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></span>';
     this.tick();
@@ -187,8 +203,47 @@ class BreathingExercise {
   }
   tick() {
     if (!this.running) return;
-    this.render(this.elapsed + (performance.now() - this.anchor) / 1000);
+    const elapsed = this.elapsed + (performance.now() - this.anchor) / 1000;
+    this.render(elapsed);
+    if (this.isBox && this.audioEnabled) this.audioCue(elapsed);
     this.frame = requestAnimationFrame(() => this.tick());
+  }
+  prepareAudio() {
+    try {
+      const AudioAPI = window.AudioContext || window.webkitAudioContext;
+      if (AudioAPI && !this.audioContext) this.audioContext = new AudioAPI();
+      this.audioContext?.resume();
+    } catch (_) {
+      // The visual breathing timer still works if audio is unavailable.
+    }
+  }
+  audioCue(elapsed) {
+    // The sound uses the same elapsed seconds as the box animation.
+    const beat = Math.floor(elapsed);
+    if (beat === this.lastAudioBeat) return;
+    this.lastAudioBeat = beat;
+    if (!this.audioContext || this.audioContext.state !== "running") return;
+    try {
+      const ctx = this.audioContext;
+      const phaseStart = beat % 4 === 0;
+      const now = ctx.currentTime;
+      // Two quiet sine partials create a warm chime instead of a sharp click.
+      for (const [multiple, peak] of [[1, 0.032], [2, 0.008]]) {
+        const oscillator = ctx.createOscillator();
+        const gain = ctx.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.value = (phaseStart ? 565 : 440) * multiple;
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(peak, now + 0.022);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+        oscillator.start(now);
+        oscillator.stop(now + 0.29);
+      }
+    } catch (_) {
+      // Audio may be blocked by mobile browser settings.
+    }
   }
   render(elapsed) {
     let remaining = elapsed % this.total;
