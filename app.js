@@ -307,8 +307,144 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) for (const exercise of exercises) exercise.pause();
 });
 
+// Small, fixed collection of believable thoughts; no AI or external service.
+const thoughtPieces = [
+  {"text":"Ich muss nicht alles heute schaffen.","note":"Ein unfertiger Tag ist kein gescheiterter Tag.","soft":"Vielleicht reicht es, einen nächsten Schritt zu finden.","topic":"druck"},
+  {"text":"Ich darf meine Meinung ändern.","note":"Neue Erfahrungen dürfen alte Überzeugungen verändern.","soft":"Ich kann erst einmal offen bleiben für eine andere Sicht.","topic":"mut"},
+  {"text":"Nicht jeder Gedanke ist eine Tatsache.","note":"Mein Kopf macht Vorschläge. Ich muss nicht alle übernehmen.","soft":"Vielleicht kann ich diesen Gedanken kurz prüfen.","topic":"gruebeln"},
+  {"text":"Ich darf eine Pause machen, ohne sie zu verdienen.","note":"Erholung gehört zum Leben, nicht zur Belohnung.","soft":"Vielleicht darf ich heute eine kleine Pause ausprobieren.","topic":"ruhe"},
+  {"text":"Ich darf etwas ausprobieren, ohne darin gut zu sein.","note":"Anfänge dürfen unbeholfen sein.","soft":"Vielleicht muss der erste Versuch nicht perfekt werden.","topic":"mut"},
+  {"text":"Mein Tempo darf sich verändern.","note":"Nicht jeder Tag verlangt gleich viel von mir.","soft":"Vielleicht darf ich heute etwas langsamer sein.","topic":"ruhe"},
+  {"text":"Ich kann freundlich zu mir sein, ohne alles gutzufinden.","note":"Selbstmitgefühl bedeutet nicht, Schwierigkeiten schönzureden.","soft":"Vielleicht kann ich zumindest auf Selbstvorwürfe verzichten.","topic":"selbstwert"},
+  {"text":"Ich darf Grenzen setzen, auch wenn andere enttäuscht sind.","note":"Ein Nein macht mich nicht automatisch unfreundlich.","soft":"Vielleicht beginne ich mit einem kleinen, ehrlichen Nein.","topic":"grenzen"},
+  {"text":"Ich muss nicht sofort eine Antwort haben.","note":"Manche Fragen brauchen Zeit.","soft":"Vielleicht kann ich sagen: Ich denke darüber nach.","topic":"druck"},
+  {"text":"Ich darf um Hilfe bitten.","note":"Nicht jede Aufgabe ist für eine Person allein gedacht.","soft":"Vielleicht kann ich eine konkrete Kleinigkeit ansprechen.","topic":"verbundenheit"},
+  {"text":"Ich kann gleichzeitig dankbar und erschöpft sein.","note":"Gefühle schließen sich nicht gegenseitig aus.","soft":"Vielleicht muss ich keines von beiden wegreden.","topic":"ruhe"},
+  {"text":"Ich darf einen guten Moment genießen, ohne ihn festzuhalten.","note":"Nicht alles Schöne muss produktiv sein.","soft":"Vielleicht reicht es, diesen Moment zu bemerken.","topic":"ruhe"},
+  {"text":"Meine Bedürfnisse sind Informationen, keine Störung.","note":"Sie zeigen mir, was mir gerade wichtig ist.","soft":"Vielleicht kann ich ihnen kurz zuhören.","topic":"grenzen"},
+  {"text":"Ein Fehler sagt nicht alles über mich aus.","note":"Eine Handlung ist nicht meine ganze Person.","soft":"Vielleicht kann ich zuerst beschreiben, was passiert ist.","topic":"selbstwert"},
+  {"text":"Ich muss nicht für alle angenehm sein.","note":"Ehrlichkeit und Freundlichkeit dürfen nebeneinanderstehen.","soft":"Vielleicht darf ich meine eigene Perspektive sagen.","topic":"grenzen"},
+  {"text":"Ich darf neu anfangen, ohne bei null zu sein.","note":"Erfahrungen gehen nicht verloren, nur weil Pläne sich ändern.","soft":"Vielleicht bringe ich schon mehr mit, als ich gerade sehe.","topic":"mut"},
+  {"text":"Ich kann einen schwierigen Tag haben und trotzdem einen Wert besitzen.","note":"Mein Wert lässt sich nicht an meiner heutigen Leistung ablesen.","soft":"Vielleicht muss ich meinen Wert heute gar nicht beweisen.","topic":"selbstwert"},
+  {"text":"Ich darf etwas nicht wissen.","note":"Neugier beginnt oft mit einer offenen Frage.","soft":"Vielleicht könnte ich einfach nachfragen.","topic":"mut"},
+  {"text":"Ich muss nicht jede Stimmung sofort reparieren.","note":"Manche Gefühle wollen erst einmal da sein dürfen.","soft":"Vielleicht kann ich benennen, was gerade los ist.","topic":"ruhe"},
+  {"text":"Ich darf meine Energie einteilen.","note":"Nicht jeder Wunsch anderer muss zu meiner Aufgabe werden.","soft":"Vielleicht prüfe ich erst, was ich leisten kann.","topic":"grenzen"},
+  {"text":"Es ist möglich, mutig und unsicher zugleich zu sein.","note":"Mut bedeutet nicht, nie zu zweifeln.","soft":"Vielleicht kann ich trotz Unsicherheit einen kleinen Schritt machen.","topic":"mut"},
+  {"text":"Ich muss mich nicht mit meinem besten Tag vergleichen.","note":"Schwankungen gehören zu einem echten Leben.","soft":"Vielleicht ist der heutige Maßstab ein anderer.","topic":"druck"},
+  {"text":"Ich darf stolz auf unsichtbare Fortschritte sein.","note":"Auch ein Gespräch, eine Grenze oder eine Pause kann etwas verändern.","soft":"Vielleicht habe ich heute etwas Kleines geschafft.","topic":"selbstwert"},
+  {"text":"Ich darf mich umentscheiden, wenn etwas nicht zu mir passt.","note":"Ein früheres Ja verpflichtet mich nicht für immer.","soft":"Vielleicht kann ich noch einmal hinschauen.","topic":"grenzen"},
+  {"text":"Ich muss nicht jede Unsicherheit sofort auflösen.","note":"Manche Antworten entstehen erst unterwegs.","soft":"Vielleicht halte ich ein kleines bisschen Unklarheit aus.","topic":"gruebeln"},
+  {"text":"Ich darf Nähe wollen und Zeit für mich brauchen.","note":"Beides kann gleichzeitig wichtig sein.","soft":"Vielleicht kann ich beides freundlich ansprechen.","topic":"verbundenheit"},
+  {"text":"Ich darf Freude an kleinen Dingen haben.","note":"Ein schöner Moment braucht keine große Begründung.","soft":"Vielleicht ist das Kleine heute genug.","topic":"ruhe"},
+  {"text":"Meine Grenzen müssen nicht erst überschritten sein, damit sie gelten.","note":"Früh wahrnehmen ist besser als spät zusammenbrechen.","soft":"Vielleicht erkenne ich ein frühes Signal.","topic":"grenzen"},
+  {"text":"Ich kann lernen, ohne mich dabei abzuwerten.","note":"Ein Lernschritt ist kein Beweis für Unfähigkeit.","soft":"Vielleicht darf es Übung brauchen.","topic":"mut"},
+  {"text":"Ich darf meine eigenen Erfolge ernst nehmen.","note":"Auch wenn andere sie nicht sehen oder bewerten.","soft":"Vielleicht kann ich einen kleinen Erfolg benennen.","topic":"selbstwert"},
+  {"text":"Ich bin mehr als meine To-do-Liste.","note":"Mein Leben besteht auch aus Beziehungen, Ruhe und Erfahrungen.","soft":"Vielleicht darf heute etwas anderes wichtig sein.","topic":"druck"},
+  {"text":"Ich muss nicht jeden Gedanken zu Ende denken.","note":"Manche Fragen dürfen bis morgen warten.","soft":"Vielleicht kann ich ihn aufschreiben und später ansehen.","topic":"gruebeln"},
+  {"text":"Ich darf etwas mögen, auch wenn ich nicht darin glänze.","note":"Nicht alles muss Wettbewerb oder Projekt werden.","soft":"Vielleicht darf ich es einfach gern machen.","topic":"mut"},
+  {"text":"Ich darf mir Zeit nehmen, bevor ich Ja sage.","note":"Eine Antwort muss nicht sofort kommen.","soft":"Vielleicht sage ich: Ich melde mich dazu.","topic":"grenzen"},
+  {"text":"Ich darf meine Meinung sagen, ohne die perfekte Formulierung zu finden.","note":"Ein Gespräch muss nicht druckreif sein.","soft":"Vielleicht reichen ehrliche, einfache Worte.","topic":"verbundenheit"},
+  {"text":"Manchmal ist genug wirklich genug.","note":"Mehr Einsatz ist nicht immer die bessere Lösung.","soft":"Vielleicht kann ich heute bewusst aufhören.","topic":"druck"},
+  {"text":"Ich kann einen Schritt zurückgehen, ohne aufzugeben.","note":"Pausen und Umwege gehören manchmal dazu.","soft":"Vielleicht ist ein kleinerer Schritt heute sinnvoll.","topic":"mut"},
+  {"text":"Ich darf mich über Unterstützung freuen.","note":"Verbundenheit ist keine Schwäche.","soft":"Vielleicht muss ich nicht alles allein tragen.","topic":"verbundenheit"},
+  {"text":"Ich darf mich auch an ganz gewöhnlichen Tagen wohlfühlen.","note":"Nicht jeder Tag muss besonders sein.","soft":"Vielleicht entdecke ich etwas Angenehmes im Alltäglichen.","topic":"ruhe"},
+  {"text":"Ich kann kritisch denken und trotzdem Hoffnung behalten.","note":"Missstände zu sehen heißt nicht, dass Veränderung unmöglich ist.","soft":"Vielleicht gibt es einen kleinen Bereich, den ich beeinflussen kann.","topic":"mut"},
+];
+const thoughtStorageKey = "sumsi-thought-favorites-v1";
+function readThoughtFavorites() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(thoughtStorageKey) || "[]");
+    return new Set(Array.isArray(parsed) ? parsed.filter(n => Number.isInteger(n) && n >= 0 && n < thoughtPieces.length) : []);
+  } catch (_) { return new Set(); }
+}
+const thoughtFavorites = readThoughtFavorites();
+const thoughtView = document.querySelector(".view-thought");
+const thoughtMain = thoughtView.querySelector("#thought-main");
+const thoughtSub = thoughtView.querySelector("#thought-sub");
+const thoughtResponse = thoughtView.querySelector("#thought-response");
+const thoughtFavoriteButton = thoughtView.querySelector(".thought-favorite");
+const thoughtSavedList = thoughtView.querySelector(".thought-saved-list");
+const thoughtSavedPanel = thoughtView.querySelector(".thought-saved-panel");
+const thoughtDialogPanel = thoughtView.querySelector(".thought-dialog-panel");
+let activeThought = Math.floor(Date.now() / 86400000) % thoughtPieces.length;
+let thoughtSeen = new Set([activeThought]);
+let softThought = false;
+let lastThoughtChoice = "";
+function showThought() {
+  const piece = thoughtPieces[activeThought];
+  thoughtMain.textContent = softThought ? piece.soft : piece.text;
+  thoughtSub.textContent = softThought ? "Du musst nicht alles sofort glauben. Vielleicht ist dieser Gedanke etwas näher dran." : piece.note;
+  thoughtResponse.hidden = !lastThoughtChoice;
+  thoughtResponse.textContent = lastThoughtChoice === "yes" ? "SUMSI: Schön. Vielleicht darf dieser Gedanke heute ein bisschen mitkommen. 🐝" :
+    lastThoughtChoice === "no" ? "SUMSI: Versteh ich. Hier ist eine vorsichtigere Variante – ohne Schönreden." : "";
+  const saved = thoughtFavorites.has(activeThought);
+  thoughtFavoriteButton.setAttribute("aria-pressed", String(saved));
+  thoughtFavoriteButton.setAttribute("aria-label", saved ? "Gedankenstück aus Merkliste entfernen" : "Gedankenstück merken");
+  thoughtFavoriteButton.textContent = saved ? "♥ Gemerkt" : "♡ Merken";
+  thoughtView.querySelector(".thought-saved-count").textContent = String(thoughtFavorites.size);
+}
+function persistThoughts() {
+  try { localStorage.setItem(thoughtStorageKey, JSON.stringify([...thoughtFavorites].sort((a,b) => a-b))); } catch (_) {}
+}
+function renderThoughtFavorites() {
+  thoughtSavedList.replaceChildren();
+  thoughtView.querySelector(".thought-empty").hidden = thoughtFavorites.size > 0;
+  for (const id of thoughtFavorites) {
+    const piece = thoughtPieces[id];
+    const item = document.createElement("article");
+    item.className = "thought-saved-item";
+    const title = document.createElement("p");
+    title.textContent = piece.text;
+    const note = document.createElement("p");
+    note.textContent = piece.note;
+    const controls = document.createElement("div");
+    controls.className = "thought-saved-controls";
+    const revisit = document.createElement("button");
+    revisit.type = "button";
+    revisit.textContent = "Mit SUMSI ansehen";
+    revisit.addEventListener("click", () => { activeThought = id; softThought = false; lastThoughtChoice = ""; setThoughtTab("dialog"); showThought(); });
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "Entfernen";
+    remove.setAttribute("aria-label", "Gedankenstück aus Favoriten entfernen");
+    remove.addEventListener("click", () => {
+      thoughtFavorites.delete(id);
+      persistThoughts(); renderThoughtFavorites(); showThought();
+    });
+    controls.append(revisit, remove);
+    item.append(title, note, controls);
+    thoughtSavedList.append(item);
+  }
+}
+function setThoughtTab(tab) {
+  const saved = tab === "saved";
+  thoughtSavedPanel.hidden = !saved;
+  thoughtDialogPanel.hidden = saved;
+  for (const button of thoughtView.querySelectorAll(".thought-tab")) {
+    button.setAttribute("aria-pressed", String(button.dataset.thoughtView === tab));
+  }
+  if (saved) renderThoughtFavorites();
+}
+thoughtView.querySelectorAll(".thought-tab").forEach(button => button.addEventListener("click", () => setThoughtTab(button.dataset.thoughtView)));
+thoughtView.querySelector(".thought-yes").addEventListener("click", () => { softThought = false; lastThoughtChoice = "yes"; showThought(); });
+thoughtView.querySelector(".thought-no").addEventListener("click", () => { softThought = true; lastThoughtChoice = "no"; showThought(); });
+thoughtView.querySelector(".thought-next").addEventListener("click", () => {
+  let options = thoughtPieces.map((_,i) => i).filter(i => i !== activeThought && !thoughtSeen.has(i));
+  if (!options.length) { thoughtSeen = new Set([activeThought]); options = thoughtPieces.map((_,i) => i).filter(i => i !== activeThought); }
+  const next = options[Math.floor(Math.random() * options.length)];
+  activeThought = next; thoughtSeen.add(next);
+  softThought = false; lastThoughtChoice = "";
+  showThought();
+});
+thoughtFavoriteButton.addEventListener("click", () => {
+  if (thoughtFavorites.has(activeThought)) thoughtFavorites.delete(activeThought);
+  else thoughtFavorites.add(activeThought);
+  persistThoughts(); showThought();
+});
+showThought();
+
 // Hash routes work on GitHub Pages, including direct links and browser history.
-const routeNames = new Set(["hummel", "oma", "box", "lang"]);
+const routeNames = new Set(["hummel", "oma", "box", "lang", "gedanken"]);
 let activeRoute = "";
 function showRoute(moveFocus = true) {
   const requested = location.hash.slice(1);
